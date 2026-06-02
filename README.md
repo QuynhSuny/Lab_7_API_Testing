@@ -244,6 +244,27 @@
 * **Kết quả kiểm thử:**
 <img width="1920" height="1200" alt="js3" src="https://github.com/user-attachments/assets/33d9ee4f-5b4b-4d88-9852-1968a6a0c2c3" />
 
+{
+    "latitude": 10.790861,
+    "longitude": 106.6313,
+    "generationtime_ms": 0.03349781036376953,
+    "utc_offset_seconds": 0,
+    "timezone": "GMT",
+    "timezone_abbreviation": "GMT",
+    "elevation": 7.0,
+    "current_units": {
+        "time": "iso8601",
+        "interval": "seconds",
+        "temperature_2m": "°C",
+        "relative_humidity_2m": "%"
+    },
+    "current": {
+        "time": "2026-06-02T09:15",
+        "interval": 900,
+        "temperature_2m": 26.4,
+        "relative_humidity_2m": 93
+    }
+}
 
 ## 💡 Kết luận sau bài Lab
 * Thành thạo kỹ năng sử dụng công cụ Postman để gửi các request dạng phương thức GET.

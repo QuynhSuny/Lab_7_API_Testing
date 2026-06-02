@@ -13,7 +13,7 @@
 ### Kịch bản 1: Kiểm thử lấy thông tin tỷ giá các đồng tiền (Thành công)
 * **Mục đích:** Kiểm tra khả năng kết nối và lấy dữ liệu tỷ giá tiền tệ thế giới.
 * **Phương thức HTTP:** GET
-* **URL:** `https://open.er-api.com/v6/latest/USD`
+* **URL:** <https://open.er-api.com/v6/latest/USD>
 * **Kết quả mong đợi:** Hệ thống trả về mã trạng thái `200 OK` màu xanh và cấu trúc dữ liệu JSON chứa tỷ giá.
 * **Kết quả thực tế:** Gửi yêu cầu thành công, hiển thị đầy đủ danh sách tỷ giá (VND, EUR, JPY...).
 * **Trạng thái:** ĐẠT (Passed)
@@ -21,7 +21,7 @@
 <img width="1920" height="1200" alt="js1" src="https://github.com/user-attachments/assets/8fca333d-33a8-4726-8957-aa68d00badfc" />
 
 #### Kết quả kiểm thử chi tiết:
-```json
+```text
 [
   {
     "result": "success",
@@ -201,15 +201,15 @@
         "ZMW": 18.257271,
         "ZWG": 26.8503,
         "ZWL": 26.8503
+      }
     }
-  }
-]
+  ]
 ```
 
 ### Kịch bản 2: Kiểm thử gọi sai đường dẫn để bắt lỗi hệ thống (Thất bại - Lỗi 404)
 * **Mục đích:** Kiểm tra khả năng bắt lỗi và phản hồi của hệ thống khi người dùng nhập sai URL.
 * **Phương thức HTTP:** GET
-* **URL (Cố tình viết sai):** `https://datausa.io/api/data-sai-duong-dan`
+* **URL (Cố tình viết sai):** <https://datausa.io/api/data-sai-duong-dan>
 * **Kết quả mong đợi:** Gửi yêu cầu thất bại đúng như thiết kế, hệ thống trả về mã lỗi `404 Not Found` màu đỏ kèm mã HTML báo lỗi trang không tồn tại.
 * **Kết quả thực tế:** Postman bắt được mã lỗi `404 Not Found` và hiển thị mã nguồn HTML lỗi của Server.
 * **Trạng thái:** ĐẠT (Passed - Bắt lỗi thành công)
@@ -217,7 +217,7 @@
 <img width="1920" height="1200" alt="js2" src="https://github.com/user-attachments/assets/92b41b1d-65d2-412b-b929-2a8d6c1e37bd" />
 
 #### Kết quả kiểm thử chi tiết:
-```html
+```text
 <!doctype html>
 <html dir="ltr" lang="en">
 <head>
@@ -237,13 +237,15 @@
 ### Kịch bản 3: Kiểm thử lấy dữ liệu dự báo thời tiết (Thành công)
 * **Mục đích:** Kiểm tra khả năng lấy dữ liệu thời tiết thực tế (nhiệt độ, độ ẩm) theo tọa độ địa lý thông qua các tham số lọc (Params).
 * **Phương thức HTTP:** GET
-* **URL:** `https://api.open-meteo.com/v1/forecast?latitude=10.82&longitude=106.63&current=temperature_2m,relative_humidity_2m`
+* **URL:** <https://api.open-meteo.com/v1/forecast?latitude=10.82&longitude=106.63&current=temperature_2m,relative_humidity_2m>
 * **Kết quả mong đợi:** Hệ thống trả về mã trạng thái `200 OK` màu xanh kèm đoạn mã JSON chứa nhiệt độ và độ ẩm thực tế tại tọa độ đã truyền.
 * **Kết quả thực tế:** Nhận dữ liệu thời tiết thành công, hiển thị chính xác cấu trúc JSON.
 * **Trạng thái:** ĐẠT (Passed)
 * **Kết quả kiểm thử:**
 <img width="1920" height="1200" alt="js3" src="https://github.com/user-attachments/assets/33d9ee4f-5b4b-4d88-9852-1968a6a0c2c3" />
 
+#### Kết quả kiểm thử chi tiết:
+```text
 {
     "latitude": 10.790861,
     "longitude": 106.6313,
@@ -265,8 +267,25 @@
         "relative_humidity_2m": 93
     }
 }
+```
 
-## 💡 Kết luận sau bài Lab
+## 3. Tóm tắt kết quả kiểm thử (Test Summary)
+* **Số lượng kịch bản đã kiểm thử:** 3 kịch bản
+* **Số lần thành công (Passed):** 2 kịch bản (Kịch bản 1 và Kịch bản 3)
+* **Số lần thất bại (Failed):** 1 kịch bản (Kịch bản 2 - Chủ động thử nghiệm bắt lỗi)
+* **Tỉ lệ thành công (Success Rate):** 66.7%
+
+## 4. Nhật ký phát hiện lỗi (Bug Log / Defect Report)
+Khi tiến hành kiểm thử, hệ thống đã ghi nhận chi tiết về lỗi phát sinh như sau:
+
+* **ID Lỗi (Status Code):** `404 Not Found`
+* **Mô Tả Lỗi:** Trang dữ liệu hoặc địa chỉ URL người dùng đang tìm kiếm không tồn tại trên hệ thống Server. Máy chủ không thể tìm thấy tài nguyên tương ứng với đường dẫn được gửi đi.
+* **Mức Độ Ảnh Hưởng (Severity):** Thấp (Low) / Không ảnh hưởng đến vận hành chung (Do đây là lỗi ngoại lệ phát sinh khi tester chủ động nhập sai thông tin địa chỉ URL nhằm kiểm tra khả năng bắt lỗi của hệ thống).
+* **Ghi Chú & Đề Xuất (Recommendations):**
+  * Người dùng hoặc lập trình viên cần kiểm tra kỹ cấu trúc chuỗi ký tự trên thanh địa chỉ URL.
+  * Đảm bảo các tham số truyền vào đúng định dạng và không bị thừa/thiếu các ký tự đặc biệt hoặc dấu gạch chéo `/` trước khi tiến hành gửi Request.
+
+## 5. Kết luận sau bài Lab
 * Thành thạo kỹ năng sử dụng công cụ Postman để gửi các request dạng phương thức GET.
 * Biết cách phân tích các mã phản hồi tiêu chuẩn của Server trả về (Mã thành công 200 OK và mã lỗi hệ thống 404 Not Found).
 * Hiểu cách cấu hình các tham số lọc (Query Params) trực tiếp trên thanh URL và bảng quản lý thuộc tính của Postman.
